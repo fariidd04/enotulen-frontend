@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Save, FileText, Clock, Trash2, Eye, Video, VideoOff, User, Maximize, Minimize, Settings, Link, Camera } from 'lucide-react';
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api`;
+const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 const PROFANITY_LIST = [
   'kontol', 'memek', 'anjing', 'bangsat', 'babi', 'tolol', 'goblok', 
@@ -85,7 +85,7 @@ const ENotulenApp = () => {
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
 
-const _isMicSilent = () => {
+const isMicSilent = () => {
   if (!analyserRef.current) return false;
 
   const data = new Uint8Array(analyserRef.current.frequencyBinCount);
@@ -252,7 +252,7 @@ recognition.onspeechend = () => {
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, [enumerateDevices]);
+  }, []);
 
   const enumerateDevices = async () => {
     try {
