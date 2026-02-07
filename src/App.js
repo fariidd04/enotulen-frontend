@@ -85,7 +85,7 @@ const ENotulenApp = () => {
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
 
-const isMicSilent = () => {
+const _isMicSilent = () => {
   if (!analyserRef.current) return false;
 
   const data = new Uint8Array(analyserRef.current.frequencyBinCount);
@@ -252,7 +252,7 @@ recognition.onspeechend = () => {
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
+  }, [enumerateDevices]);
 
   const enumerateDevices = async () => {
     try {
